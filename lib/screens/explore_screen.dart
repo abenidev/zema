@@ -37,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
       //get tracks
       if (!Provider.of<TrackProvider>(context, listen: false).isInitLoaded) {
-        Provider.of<TrackProvider>(context, listen: false).getTracks();
+        Provider.of<TrackProvider>(context, listen: false).getTracks(context);
       }
 
       //get artists

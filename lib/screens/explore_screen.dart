@@ -92,39 +92,44 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       // physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: albums.length,
-                      itemBuilder: (context, index) => Container(
-                        decoration: const BoxDecoration(),
-                        child: Padding(
-                          padding: index == 0 ? EdgeInsets.only(left: contentPaddingVal.w) : const EdgeInsets.all(0),
-                          child: Container(
-                            decoration: const BoxDecoration(),
-                            margin: EdgeInsets.only(right: 3.w),
-                            width: 65.w,
-                            child: Column(
-                              children: [
-                                SquareAlbumArtCard(artUrl: albums[index].albumCoverImage),
-                                SizedBox(height: 2.h),
-                                Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(getLimitedString(albums[index].albumName, textLenLimit),
-                                              style: darkTextStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 17.sp)),
-                                          SizedBox(height: 0.5.h),
-                                          Text(getLimitedString(albums[index].artistName, textLenLimit),
-                                              style: darkTextStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 15.sp)),
-                                        ],
-                                      ),
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PlayerScreen()));
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Padding(
+                            padding: index == 0 ? EdgeInsets.only(left: contentPaddingVal.w) : const EdgeInsets.all(0),
+                            child: Container(
+                              decoration: const BoxDecoration(),
+                              margin: EdgeInsets.only(right: 3.w),
+                              width: 65.w,
+                              child: Column(
+                                children: [
+                                  SquareAlbumArtCard(artUrl: albums[index].albumCoverImage),
+                                  SizedBox(height: 2.h),
+                                  Container(
+                                    decoration: const BoxDecoration(),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(getLimitedString(albums[index].albumName, textLenLimit),
+                                                style: darkTextStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 17.sp)),
+                                            SizedBox(height: 0.5.h),
+                                            Text(getLimitedString(albums[index].artistName, textLenLimit),
+                                                style: darkTextStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 15.sp)),
+                                          ],
+                                        ),
 
-                                      //icon
-                                      Container(),
-                                    ],
+                                        //icon
+                                        Container(),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -251,39 +256,44 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       // physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: 8,
-                      itemBuilder: (context, index) => Container(
-                        decoration: const BoxDecoration(),
-                        child: Padding(
-                          padding: index == 0 ? EdgeInsets.only(left: contentPaddingVal.w) : const EdgeInsets.all(0),
-                          child: Container(
-                            decoration: const BoxDecoration(),
-                            margin: EdgeInsets.only(right: 3.w),
-                            width: 30.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAlbumArtCard(artUrl: artists.isEmpty ? null : artists[index].artistProfileImage),
-                                //
-                                SizedBox(height: 2.h),
-                                Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(getLimitedString(artists.isEmpty ? '' : artists[index].artistName, textLenLimit),
-                                              style: darkTextStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 17.sp)),
-                                        ],
-                                      ),
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PlayerScreen()));
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(),
+                          child: Padding(
+                            padding: index == 0 ? EdgeInsets.only(left: contentPaddingVal.w) : const EdgeInsets.all(0),
+                            child: Container(
+                              decoration: const BoxDecoration(),
+                              margin: EdgeInsets.only(right: 3.w),
+                              width: 30.w,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAlbumArtCard(artUrl: artists.isEmpty ? null : artists[index].artistProfileImage),
+                                  //
+                                  SizedBox(height: 2.h),
+                                  Container(
+                                    decoration: const BoxDecoration(),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(getLimitedString(artists.isEmpty ? '' : artists[index].artistName, textLenLimit),
+                                                style: darkTextStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 17.sp)),
+                                          ],
+                                        ),
 
-                                      //icon
-                                      Container(),
-                                    ],
+                                        //icon
+                                        Container(),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

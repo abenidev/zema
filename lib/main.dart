@@ -4,6 +4,9 @@ import 'package:zema/constants/colors.dart';
 import 'package:zema/constants/common.dart';
 import 'package:zema/constants/globals.dart';
 import 'package:zema/providers/album_provider.dart';
+import 'package:zema/providers/artist_provider.dart';
+import 'package:zema/providers/player_provider.dart';
+import 'package:zema/providers/track_provider.dart';
 import 'package:zema/screens/home_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +14,14 @@ import 'package:provider/provider.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AlbumProvider()),
+        ChangeNotifierProvider(create: (context) => TrackProvider()),
+        ChangeNotifierProvider(create: (context) => ArtistProvider()),
+        ChangeNotifierProvider(create: (context) => PlayerProvider()),
       ],
       child: const MyApp(),
     ),

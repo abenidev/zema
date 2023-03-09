@@ -30,18 +30,18 @@ class Artist {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'artistName': artistName,
-      'artistDescription': artistDescription,
-      'artistProfileImage': artistProfileImage,
+      'artist_name': artistName,
+      'artist_description': artistDescription,
+      'artist_profileImage': artistProfileImage,
     };
   }
 
   factory Artist.fromMap(Map<String, dynamic> map) {
     return Artist(
       id: map['id'] as int,
-      artistName: map['artistName'] as String,
-      artistDescription: map['artistDescription'] as String,
-      artistProfileImage: map['artistProfileImage'] as String,
+      artistName: map['artist_name'] as String,
+      artistDescription: map['artist_description'] as String,
+      artistProfileImage: map['artist_profileImage'] as String,
     );
   }
 

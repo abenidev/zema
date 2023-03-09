@@ -11,7 +11,7 @@ class MyResponse {
   });
 
   MyResponse copyWith({
-    dynamic? data,
+    dynamic data,
     bool? isSuccess,
   }) {
     return MyResponse(

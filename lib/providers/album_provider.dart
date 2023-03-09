@@ -7,6 +7,7 @@ class AlbumProvider extends ChangeNotifier {
   final AlbumService _albumService = AlbumService();
 
   bool isLoading = false;
+  bool isInitLoaded = false;
   final List<Album> _albums = [];
   List<Album> get albums => _albums;
 
@@ -16,6 +17,8 @@ class AlbumProvider extends ChangeNotifier {
     MyResponse myResponse = await _albumService.getAlbums(page: 1, pageSize: 10);
     if (myResponse.isSuccess) {
       _albums.addAll(myResponse.data);
+      isInitLoaded = true;
+      notifyListeners();
     }
     isLoading = false;
     notifyListeners();

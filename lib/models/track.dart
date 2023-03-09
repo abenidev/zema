@@ -46,26 +46,26 @@ class Track {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'trackName': trackName,
-      'trackDescription': trackDescription,
-      'trackCoverImage': trackCoverImage,
-      'trackAudioFile': trackAudioFile,
-      'artistName': artistName,
-      'albumName': albumName,
-      'genreName': genreName,
+      'track_name': trackName,
+      'track_description': trackDescription,
+      'track_coverImage': trackCoverImage,
+      'track_audioFile': trackAudioFile,
+      'artist_name': artistName,
+      'album_name': albumName,
+      'genre_name': genreName,
     };
   }
 
   factory Track.fromMap(Map<String, dynamic> map) {
     return Track(
       id: map['id'] as int,
-      trackName: map['trackName'] as String,
-      trackDescription: map['trackDescription'] as String,
-      trackCoverImage: map['trackCoverImage'] as String,
-      trackAudioFile: map['trackAudioFile'] as String,
-      artistName: map['artistName'] as String,
-      albumName: map['albumName'] as String,
-      genreName: map['genreName'] as String,
+      trackName: map['track_name'] as String,
+      trackDescription: map['track_description'] as String,
+      trackCoverImage: map['track_coverImage'] as String,
+      trackAudioFile: map['track_audioFile'] as String,
+      artistName: map['artist_name'] as String,
+      albumName: map['album_name'] as String,
+      genreName: map['genre_name'] as String,
     );
   }
 
@@ -94,13 +94,6 @@ class Track {
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        trackName.hashCode ^
-        trackDescription.hashCode ^
-        trackCoverImage.hashCode ^
-        trackAudioFile.hashCode ^
-        artistName.hashCode ^
-        albumName.hashCode ^
-        genreName.hashCode;
+    return id.hashCode ^ trackName.hashCode ^ trackDescription.hashCode ^ trackCoverImage.hashCode ^ trackAudioFile.hashCode ^ artistName.hashCode ^ albumName.hashCode ^ genreName.hashCode;
   }
 }

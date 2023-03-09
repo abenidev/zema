@@ -96,8 +96,8 @@ class HeaderButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 18.w,
-        padding: EdgeInsets.symmetric(vertical: 0.3.h),
+        width: 21.w,
+        padding: EdgeInsets.symmetric(vertical: 0.75.h),
         decoration: BoxDecoration(color: isSelected ? KColors.colorLight : Colors.transparent, borderRadius: BorderRadius.circular(50.0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

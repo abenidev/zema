@@ -4,10 +4,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../constants/colors.dart';
 
-class SquareAlbumArtCard extends StatelessWidget {
-  const SquareAlbumArtCard({super.key, this.artUrl, this.height = 18});
+class CircleAlbumArtCard extends StatelessWidget {
+  const CircleAlbumArtCard({super.key, this.artUrl});
   final String? artUrl;
-  final int height;
 
   @override
   Widget build(BuildContext context) {
@@ -17,27 +16,27 @@ class SquareAlbumArtCard extends StatelessWidget {
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            shape: BoxShape.circle,
             color: Colors.grey,
-            borderRadius: BorderRadius.circular(10),
             boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
-          height: height.h,
+          height: 18.h,
         ),
         placeholder: (context, url) => Container(
           decoration: BoxDecoration(
+            shape: BoxShape.circle,
             color: Colors.grey.shade400,
-            borderRadius: BorderRadius.circular(10),
             boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
-          height: height.h,
+          height: 18.h,
         ),
         errorWidget: (context, url, error) => Container(
           decoration: BoxDecoration(
+            shape: BoxShape.circle,
             color: Colors.grey,
-            borderRadius: BorderRadius.circular(10),
             boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
-          height: height.h,
+          height: 18.h,
           child: const Center(child: Icon(Icons.error)),
         ),
       );
@@ -45,11 +44,11 @@ class SquareAlbumArtCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
+        shape: BoxShape.circle,
         color: Colors.grey,
-        borderRadius: BorderRadius.circular(10),
         boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
       ),
-      height: height.h,
+      height: 18.h,
     );
   }
 }

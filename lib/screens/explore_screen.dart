@@ -14,6 +14,7 @@ import 'package:zema/screens/player_screen.dart';
 import 'package:zema/utils/string_utils.dart';
 
 import '../components/square_album_art_card.dart';
+import '../components/title_component.dart';
 import '../providers/album_provider.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -295,22 +296,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
               //
             ],
           )),
-    );
-  }
-}
-
-class TitleComponent extends StatelessWidget {
-  const TitleComponent({super.key, required this.title});
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: contentPadding,
-      child: Text(
-        title,
-        style: darkTextStyle.copyWith(fontSize: 18.sp, fontWeight: FontWeight.w600),
-      ),
     );
   }
 }

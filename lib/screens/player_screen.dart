@@ -83,10 +83,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           artUrl: metaData.artUri.toString(),
                         ),
                       ),
-
-                      Text(metaData.title),
                       SizedBox(height: 2.h),
-                      Text(metaData.artist ?? ''),
+
+                      Text(metaData.title, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600)),
+                      SizedBox(height: 1.h),
+                      Text(metaData.artist ?? '', style: TextStyle(fontSize: 16.sp)),
                     ],
                   );
                 },

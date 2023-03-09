@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
@@ -15,12 +16,32 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
+  Duration? positionData;
+  Duration? bufferedPositionData;
+  Duration? durationData;
+
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   Provider.of<PlayerProvider>(context, listen: false).initAudioPlayer(Provider.of<TrackProvider>(context).tracks[0].trackAudioFile);
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      initAudioPlayerTracker();
+
+      //   Provider.of<PlayerProvider>(context, listen: false).initAudioPlayer(Provider.of<TrackProvider>(context).tracks[0].trackAudioFile);
+    });
+  }
+
+  initAudioPlayerTracker() {
+    Provider.of<PlayerProvider>(context, listen: false).audioPlayer.positionStream.listen((value) {
+      setState(() => positionData = value);
+    });
+
+    Provider.of<PlayerProvider>(context, listen: false).audioPlayer.bufferedPositionStream.listen((value) {
+      setState(() => bufferedPositionData = value);
+    });
+
+    Provider.of<PlayerProvider>(context, listen: false).audioPlayer.durationStream.listen((value) {
+      setState(() => durationData = value);
+    });
   }
 
   @override
@@ -30,30 +51,57 @@ class _PlayerScreenState extends State<PlayerScreen> {
         child: Container(
           height: 100.h,
           width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 6.h),
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [KColors.headerColor, Color.fromARGB(255, 133, 39, 60)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+            color: KColors.bgColor,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 10.h),
-                //
-                SizedBox(
-                  width: 50.w,
-                  child: SquareAlbumArtCard(
-                    height: 30,
-                    artUrl: Provider.of<TrackProvider>(context).tracks[0].trackCoverImage,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10.h),
+                  //
+                  SizedBox(
+                    width: 50.w,
+                    child: SquareAlbumArtCard(
+                      height: 30,
+                      artUrl: Provider.of<TrackProvider>(context).tracks[0].trackCoverImage,
+                    ),
                   ),
-                ),
-                SizedBox(height: 5.h),
-                //
-                const Controls(),
-              ],
-            ),
+                ],
+              ),
+
+              //
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: ProgressBar(
+                      barHeight: 8,
+                      baseBarColor: Colors.grey.shade600,
+                      bufferedBarColor: Colors.grey,
+                      progressBarColor: Colors.red,
+                      thumbColor: Colors.red,
+                      timeLabelTextStyle: const TextStyle(color: KColors.colorDark, fontWeight: FontWeight.w600),
+                      progress: positionData ?? Duration.zero,
+                      buffered: bufferedPositionData ?? Duration.zero,
+                      total: durationData ?? Duration.zero,
+                      onSeek: Provider.of<PlayerProvider>(context).audioPlayer.seek,
+                    ),
+                  ),
+
+                  //
+                  SizedBox(height: 3.h),
+
+                  //
+                  const Controls(),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -78,13 +126,13 @@ class Controls extends StatelessWidget {
             onPressed: Provider.of<PlayerProvider>(context).audioPlayer.play,
             icon: const Icon(Icons.play_arrow_rounded),
             iconSize: 80,
-            color: KColors.colorLight,
+            color: KColors.colorDark,
           );
         } else if (processingState != ProcessingState.completed) {
           return IconButton(
             onPressed: Provider.of<PlayerProvider>(context).audioPlayer.pause,
             icon: const Icon(Icons.pause_rounded),
-            color: KColors.colorLight,
+            color: KColors.colorDark,
             iconSize: 80,
           );
         }
@@ -92,7 +140,7 @@ class Controls extends StatelessWidget {
         return const Icon(
           Icons.play_arrow_rounded,
           size: 80,
-          color: KColors.colorLight,
+          color: KColors.colorDark,
         );
 
         //

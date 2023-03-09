@@ -5,9 +5,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../constants/colors.dart';
 
 class SquareAlbumArtCard extends StatelessWidget {
-  const SquareAlbumArtCard({super.key, this.artUrl, this.height = 18});
+  const SquareAlbumArtCard({super.key, this.artUrl, this.height = 18, this.isVisible = true});
   final String? artUrl;
   final int height;
+  final bool isVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -17,25 +18,25 @@ class SquareAlbumArtCard extends StatelessWidget {
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-            color: Colors.grey,
+            color: !isVisible ? Colors.transparent : Colors.grey,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
+            boxShadow: !isVisible ? [] : [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
           height: height.h,
         ),
         placeholder: (context, url) => Container(
           decoration: BoxDecoration(
-            color: Colors.grey.shade400,
+            color: !isVisible ? Colors.transparent : Colors.grey.shade400,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
+            boxShadow: !isVisible ? [] : [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
           height: height.h,
         ),
         errorWidget: (context, url, error) => Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: !isVisible ? Colors.transparent : Colors.grey,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
+            boxShadow: !isVisible ? [] : [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
           ),
           height: height.h,
           child: const Center(child: Icon(Icons.error)),
@@ -45,9 +46,9 @@ class SquareAlbumArtCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: !isVisible ? Colors.transparent : Colors.grey,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
+        boxShadow: !isVisible ? [] : [BoxShadow(color: KColors.colorDark.withOpacity(0.3), offset: const Offset(2, 3), blurRadius: 5)],
       ),
       height: height.h,
     );

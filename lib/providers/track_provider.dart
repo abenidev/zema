@@ -21,7 +21,7 @@ class TrackProvider extends ChangeNotifier {
       _tracks.addAll(myResponse.data);
       isInitLoaded = true;
       // ignore: use_build_context_synchronously
-      Provider.of<PlayerProvider>(context, listen: false).initAudioPlayer(_tracks[0].trackAudioFile);
+      Provider.of<PlayerProvider>(context, listen: false).initAudioPlayer(_tracks);
       notifyListeners();
     }
     isLoading = false;
